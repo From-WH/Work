@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url(bj.jpg);
+    background-size: cover;
+}
+#zzz{
+    margin-top: 200px;
+}
+#zzz div{
+    text-align: center;
+}
+#zzz div:nth-child(2){
+    margin-top: 20px;
+}
+#zzz div:nth-child(3){
+    margin-top: 20px;
+}
+#zzz div kbd{
+    border: 1px solid rgb(197, 197, 197);
+    border-radius: 3px;
+    width: 4em;
+    height: 4em;
+    line-height: 4em;
+    margin-right: 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    position: relative;
+    color: white;
+    box-shadow: 0px 0px 5px 1px rgba(230,225,230,1);
+    transition: all 0.4s;
+}
+#zzz div kbd:hover{
+    box-shadow: 0px 0px 8px 3px rgba(245,245,245,1);
+}
+#zzz div kbd:last-child{
+    margin-right: 0;
+}
+#zzz div kbd:hover>button{
+    display: inline-block;
+}
+#zzz div kbd button{
+    position: absolute;
+    color: whitesmoke;
+    right: 0;
+    bottom: 0;
+    height: 1.5em;
+    font-size: 0.5em;
+    width: 1.5em;
+    display: none;
+    background-color: transparent;
+    border-color: transparent;
+}
