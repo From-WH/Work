@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,52 +8,123 @@
     <title>Document</title>
     <link rel="stylesheet" href="a.css">
 </head>
+
 <body>
+
     <head></head>
-    <main id="zzz"></main>
+    <main id="zzz">
+        <div class="wrapper" id="main">
+
+        </div>
+    </main>
     <footer></footer>
-<script>
-    keys = {
-        '0': { 0: 'q', 1: 'w', 2: 'e', 3: 'r', 4: 't', 5: 'y', 6: 'u', 7: 'i', 8: 'o', 9: 'p', lenght: 10 },
-        '1': { 0: 'a', 1: 's', 2: 'd', 3: 'f', 4: 'g', 5: 'h', 6: 'j', 7: 'k', 8: 'l', lenght: 9 },
-        '2': { 0: 'z', 1: 'x', 2: 'c', 3: 'v', 4: 'b', 5: 'n', 6: 'm', lenght: 7 },
-        'lenght': 3
-    }
-    hash = {'q':'qq.com','w':'weibo.com','e':'eleme.com','z':'zhihu.com'}
-    hashInLocalStorage = JSON.parse(localStorage.getItem('ooo') || 'null')  //取出localStorage中ooo对应的hash ‘null’表示没有存入且没有网址
-    if (hashInLocalStorage) {    //看hash是否被更改
-        hash = hashInLocalStorage   //如果更改，覆盖之前的hash
-    }
-    index = 0
-    while (index < keys['lenght']){
-        div = document.createElement('div')
-        zzz.appendChild(div)            //创建div
-        row = keys[index]       //获取 q w e r...
-        index2 = 0
-        while (index2 < row['lenght']) {  //确定创建kdb的个数10 9 7
-            kbd = document.createElement('kbd')
-            kbd.textContent= row[index2]
-            buttonX = document.createElement('button') //创建button按键
-            buttonX.textContent = 'E'
-            buttonX.id = row[index2] //根据id，确定每一个button按钮
-            buttonX.onclick = function (jjjjj) {     //button被点击
-                kk = (jjjjj['target']['id'])    //确定点击的是哪一个button q w e.. 
-                xx = prompt('存入网址')    //输入你要存入的网址
-                hash[kk] = xx       //将用户输入的网址存入点击的这个kk里
-                localStorage.setItem('ooo',JSON.stringify(hash))    //只要hash变了就把hash存入ooo
-            }
-            div.appendChild(kbd)
-            kbd.appendChild(buttonX)
-            index2 = index2 + 1
+    <script>
+        //1.初始化数据
+        var hashA = init()
+        var keys = hashA['keys']
+        var hash = hashA['hash']
+
+        //2生成键盘
+        generateKeyboard(keys, hash)
+
+        //3.监听用户键盘
+        listenToUser(hash)
+
+
+        function gitFromlocalStorage(name) {
+            return JSON.parse(localStorage.getItem('name') || 'null')
         }
-        index = index + 1
-    }
-    document.onkeypress = function (jjjjj) {    //用户点击
-        key = jjjjj['key']      //用户点击的哪个字母
-        website = hash[key]     //字母对应的网站
-        // location.href = 'http://'+ website
-        window.open('http://' + website, '_blank')  //在新的窗口打开网址
-    }
-</script>
+        function tag(tagname) {
+            return document.createElement(tagname)
+        }
+
+        function createSpan(textContent) {
+            var span = tag('span')
+            span.textContent = textContent
+            span.className = 'text'
+            return span
+        }
+        function createButton(id) {
+            var buttonX = tag('button') //创建button按键
+            buttonX.textContent = 'E'
+            buttonX.id = id //根据id，确定每一个button按钮
+            buttonX.onclick = function (jjjjj) {     //button被点击
+                var button2 = jjjjj['target']
+                var img3 = button2.previousSibling
+                var kk = button2['id']   //确定点击的是哪一个button q w e.. 
+                var xx = prompt('存入网址')    //输入你要存入的网址
+                hash[kk] = xx   //将用户输入的网址存入点击的这个kk里
+                img3.src = 'http://' + xx + '/favicon.ico'
+                img3.onerror = function (img2) {
+                    img2.target.src = '//i.loli.net/2018/03/31/5abf636cd255b.png'
+                }
+                localStorage.setItem('ooo', JSON.stringify(hash))    //只要hash变了就把hash存入ooo
+            }
+            return buttonX
+        }
+        function createImage(domain) {
+            var img = tag('img')
+            if (domain) {
+                img.src = 'http://' + domain + '/favicon.ico'
+            } else {
+                img.src = '//i.loli.net/2018/03/31/5abf636cd255b.png'
+            }
+            img.onerror = function (img2) {
+                img2.target.src = '//i.loli.net/2018/03/31/5abf636cd255b.png'
+
+            }
+            return img
+        }
+        function init() {
+            var keys = {
+                '0': { 0: 'q', 1: 'w', 2: 'e', 3: 'r', 4: 't', 5: 'y', 6: 'u', 7: 'i', 8: 'o', 9: 'p', lenght: 10 },
+                '1': { 0: 'a', 1: 's', 2: 'd', 3: 'f', 4: 'g', 5: 'h', 6: 'j', 7: 'k', 8: 'l', lenght: 9 },
+                '2': { 0: 'z', 1: 'x', 2: 'c', 3: 'v', 4: 'b', 5: 'n', 6: 'm', lenght: 7 },
+                'lenght': 3
+            }
+            var hash = { 'q': 'qq.com', 'w': 'weibo.com', 'e': 'eleme.com', 'z': 'zhihu.com' }
+            var hashInLocalStorage = gitFromlocalStorage('ooo')  //取出localStorage中ooo对应的hash ‘null’表示没有存入且没有网址
+
+            if (hashInLocalStorage) {    //看hash是否被更改
+                hash = hashInLocalStorage   //如果更改，覆盖之前的hash
+            }
+            return {
+                'keys': keys,
+                'hash': hash
+            }
+        }
+        function generateKeyboard(key, hash) {
+            for (var index = 0; index < keys['lenght']; index = index + 1) {
+                var div = tag('div')
+                main.appendChild(div)
+                //创建div
+                var row = keys[index]       //获取 q w e r...
+                for (var index2 = 0; index2 < row['lenght']; index2 = index2 + 1) {
+
+                    var span = createSpan(row[index2])
+
+                    var buttonX = createButton(row[index2])
+
+                    var img = createImage(hash[row[index2]])
+
+                    var kbd = tag('kbd')
+                    kbd.appendChild(span)
+                    kbd.appendChild(img)
+                    div.appendChild(kbd)
+                    kbd.appendChild(buttonX)
+
+                }
+            }
+        }
+        function listenToUser(hash) {
+            document.onkeypress = function (jjjjj) {    //用户点击
+                var key = jjjjj['key']      //用户点击的哪个字母
+                var website = hash[key]     //字母对应的网站
+                // location.href = 'http://'+ website
+                window.open('http://' + website, '_blank')  //在新的窗口打开网址
+            }
+        }
+    </script>
 </body>
+
 </html>

@@ -3,22 +3,32 @@
     padding: 0;
 }
 body{
-    background-image: url(bj.jpg);
+    background: grey url(bj.jpg);
     background-size: cover;
+    height: 100vh;
 }
-#zzz{
-    margin-top: 200px;
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin;
 }
-#zzz div{
+#main{
+    background: rgb(255,255,255,0.1);
+    padding: 20px 20px; 
+    border-radius: 8px;
+}
+#main div{
     text-align: center;
 }
-#zzz div:nth-child(2){
+#main div:nth-child(2){
     margin-top: 20px;
 }
-#zzz div:nth-child(3){
+#main div:nth-child(3){
     margin-top: 20px;
 }
-#zzz div kbd{
+#main div kbd{
     border: 1px solid rgb(0, 0, 0);
     border-radius: 5px;
     width: 65px;
@@ -33,17 +43,18 @@ body{
     background: linear-gradient(to bottom, rgba(5,1,1,1) 1%,rgba(0,0,0,1) 100%);
     box-shadow: 0px 0px 5px 1px rgb(15, 15, 15) 0px 0px 5px 1px rgb(10, 10, 10);
     transition: all 0.4s;
+    position: relative;
 }
-#zzz div kbd:hover{
+#main div kbd:hover{
     box-shadow: 0px 0px 8px 3px rgba(245,245,245,1);
 }
-#zzz div kbd:last-child{
+#main div kbd:last-child{
     margin-right: 0;
 }
-#zzz div kbd:hover>button{
+#main div kbd:hover>button{
     display: inline-block;
 }
-#zzz div kbd button{
+#main div kbd button{
     position: absolute;
     color: whitesmoke;
     right: 0;
@@ -54,4 +65,12 @@ body{
     display: none;
     background-color: transparent;
     border-color: transparent;
+}
+#main div kbd img{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: white;
 }
