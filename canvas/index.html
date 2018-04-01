@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas {
+            background: red;
+            height: 100vh;
+            position: relative;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas"></div>
+    <script>
+        var div = document.getElementById('canvas')
+        var painting = false
+        //点击鼠标
+        div.onmousedown = function (a) {
+            painting = true
+            var x = a.clientX
+            var y = a.clientY
+            var divA = document.createElement('div')
+            divA.style = "width:6px; height:6px; border-radius:3px;" +
+                "background-color:black;position: absolute;" +
+                "left: " + (x - 10) + "px; top: " + (y - 9) + "px;"
+            div.appendChild(divA)
+        }
+        //移动鼠标
+        div.onmousemove = function (a) {
+            if (painting) {
+                var x = a.clientX
+                var y = a.clientY
+                var divA = document.createElement('div')
+                divA.style = "width:6px; height:6px; border-radius:3px;" +
+                    "background-color:black;position: absolute;" +
+                    "left: " + (x - 10) + "px; top: " + (y - 9) + "px;"
+                div.appendChild(divA)
+            } else {
+
+            }
+
+        }
+        //抬起鼠标
+        div.onmouseup = function (z) {
+            painting = false
+            }
+    </script>
+</body>
+
+</html>
