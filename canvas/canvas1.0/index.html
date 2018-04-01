@@ -5,15 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="a.css">
     <title>Document</title>
-    <style>
-        #canvas {
-            background: red;
-            height: 100vh;
-            position: relative;
-
-        }
-    </style>
 </head>
 
 <body>
@@ -29,7 +22,7 @@
             var divA = document.createElement('div')
             divA.style = "width:6px; height:6px; border-radius:3px;" +
                 "background-color:black;position: absolute;" +
-                "left: " + (x - 10) + "px; top: " + (y - 9) + "px;"
+                "left: " + (x - 3) + "px; top: " + (y - 3) + "px;"
             div.appendChild(divA)
         }
         //移动鼠标
@@ -40,7 +33,7 @@
                 var divA = document.createElement('div')
                 divA.style = "width:6px; height:6px; border-radius:3px;" +
                     "background-color:black;position: absolute;" +
-                    "left: " + (x - 10) + "px; top: " + (y - 9) + "px;"
+                    "left: " + (x - 3) + "px; top: " + (y - 3) + "px;"
                 div.appendChild(divA)
             } else {
 
@@ -50,7 +43,7 @@
         //抬起鼠标
         div.onmouseup = function (z) {
             painting = false
-            }
+        }
     </script>
 </body>
 

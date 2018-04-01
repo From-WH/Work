@@ -1,0 +1,9 @@
+body{
+    margin: 0;
+}
+#canvas {
+    background: red;
+    height: 100vh;
+    position: relative;
+
+}
