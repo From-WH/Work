@@ -7,13 +7,51 @@ listenToUser()
 
 
 var eraserEnabled = false
+pen.onclick = function () {
+    eraserEnabled = false
+    pen.classList.add('active')
+    eraser.classList.remove('active')
+}
 eraser.onclick = function () {
     eraserEnabled = true
-    actions.className = 'actions x'
+    eraser.classList.add('active')
+    pen.classList.remove('active')
 }
-brush.onclick = function () {
-    eraserEnabled = false
-    actions.className = 'actions'
+
+black.onclick = function () {
+    context.fillStyle = 'black'
+    context.strokeStyle = 'black'
+    black.classList.add('active')
+    red.classList.remove('active')
+    green.classList.remove('active')
+    yellow.classList.remove('active')
+
+}
+red.onclick = function () {
+    context.fillStyle = 'red'
+    context.strokeStyle = 'red'
+    red.classList.add('active')
+    black.classList.remove('active')
+    green.classList.remove('active')
+    yellow.classList.remove('active')
+
+}
+green.onclick = function () {
+    context.fillStyle = 'green'
+    context.strokeStyle = 'green'
+    green.classList.add('active')
+    red.classList.remove('active')
+    black.classList.remove('active')
+    yellow.classList.remove('active')
+}
+yellow.onclick = function () {
+    context.fillStyle = 'yellow'
+    context.strokeStyle = 'yellow'
+    yellow.classList.add('active')
+    red.classList.remove('active')
+    black.classList.remove('active')
+    green.classList.remove('active')
+
 }
 
 function ouToCanvasSize(canvas) {
@@ -78,7 +116,6 @@ function listenToUser() {
     } else {
         //是触屏设备
         canvas.ontouchstart = function (aaa) {
-            console.log(aaa)
             var x = aaa.touches[0].clientX
             var y = aaa.touches[0].clientY
             using = true
@@ -88,7 +125,6 @@ function listenToUser() {
                 lastpoint = { 'x': x, 'y': y }
         }
         canvas.ontouchmove = function (aaa) {
-            console.log('边播变动')
             var x = aaa.touches[0].clientX
             var y = aaa.touches[0].clientY
             if (!using) { return }
