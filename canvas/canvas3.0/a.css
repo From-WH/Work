@@ -17,13 +17,13 @@ body{
 .actions{
     position: fixed;
     top: 9px;
-    left: 9px;
+    left: 30px;
 }
 .actions svg{
-    width: 1.5em;
-    height: 1.5em;
+    width: 2em;
+    height: 2em;
     transition: all 0.3s;
-    margin-left: 4px;
+    margin-left: 8px;
 }
 .actions svg.active{
     fill: red;
@@ -37,7 +37,7 @@ body{
 .colors li{
     width: 20px;
     height: 20px;
-    margin: 10px 0;
+    margin: 15px 0;
     border-radius: 50%;
     transition: all 0.2s;
 }
@@ -64,12 +64,18 @@ body{
 }
 .sizes .thin{
     height: 0;
-    width: 14px;
+    width: 10px;
     border-top: 3px solid black;
 }
 .sizes .thick{
     height: 0;
     width: 15px;
-    margin-top: 20px;
+    margin-top: 15px;
+    border-top: 5px solid black;
+}
+.sizes .strong{
+    height: 0;
+    width: 20px;
+    margin-top: 15px;
     border-top: 8px solid black;
 }

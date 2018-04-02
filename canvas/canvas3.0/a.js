@@ -1,10 +1,12 @@
 var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
+lineWidth = 5
 ouToCanvasSize(canvas)
 
 listenToUser()
 
-
+context.fillStyle = "white";
+context.fillRect(0, 0, canvas.width, canvas.height);
 
 var eraserEnabled = false
 pen.onclick = function () {
@@ -53,7 +55,28 @@ yellow.onclick = function () {
     green.classList.remove('active')
 
 }
+thin.onclick = function () {
+    lineWidth = 3
+}
+thick.onclick = function () {
+    lineWidth = 5
+}
+strong.onclick = function () {
+    lineWidth = 10
+}
 
+download.onclick = function () {
+    var url = canvas.toDataURL("image/png");
+    var a = document.createElement('a')
+    a.href  = url
+    a.download = '我的作品'
+    a.target = '_blank'
+    a.click()
+}
+
+clear.onclick = function () {
+    context.clearRect(0,0,canvas.width,canvas.height)
+}
 function ouToCanvasSize(canvas) {
     setCanvasSize()
 
@@ -77,7 +100,7 @@ function drawCircle(x, y, radius) {
 function drawline(x1, y1, x2, y2) {
     context.beginPath();
     context.moveTo(x1, y1);
-    context.lineWidth = 5
+    context.lineWidth = lineWidth
     context.lineTo(x2, y2);
     context.stroke();
     context.closePath();
