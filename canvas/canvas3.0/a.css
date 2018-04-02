@@ -14,6 +14,11 @@ ol li{
 body{
     overflow: hidden;
 }
+canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .actions{
     position: fixed;
     top: 9px;
