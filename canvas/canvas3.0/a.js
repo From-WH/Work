@@ -2,10 +2,7 @@ var canvas = document.getElementById('canvas');
 var context = canvas.getContext('2d');
 ouToCanvasSize(canvas)
 
-listenToMouse()
-
-
-
+listenToUser()
 
 
 
@@ -47,33 +44,64 @@ function drawline(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
-function listenToMouse() {
-
-
+function listenToUser() {
     var using = false
     var lastpoint = { x: undefined, y: undefined }
-    canvas.onmousedown = function (aaa) {
-        var x = aaa.clientX
-        var y = aaa.clientY
-        using = true
-        if (eraserEnabled) {
-            context.clearRect(x, y, 10, 10)
-        } else
-        lastpoint = { 'x': x, 'y': y }
-    }
-    canvas.onmousemove = function (aaa) {
-        var x = aaa.clientX
-        var y = aaa.clientY
-        if (!using) {return}
-        if (eraserEnabled) {
+
+    //  特性检测
+    if (document.body.ontouchstart === undefined) {
+        //是不是触屏设备
+        canvas.onmousedown = function (aaa) {
+            var x = aaa.clientX
+            var y = aaa.clientY
+            using = true
+            if (eraserEnabled) {
+                context.clearRect(x, y, 10, 10)
+            } else
+                lastpoint = { 'x': x, 'y': y }
+        }
+        canvas.onmousemove = function (aaa) {
+            var x = aaa.clientX
+            var y = aaa.clientY
+            if (!using) { return }
+            if (eraserEnabled) {
                 context.clearRect(x - 5, y - 5, 10, 10)
-        } else {
+            } else {
                 var newpoint = { 'x': x, 'y': y }
                 drawline(lastpoint.x, lastpoint.y, newpoint.x, newpoint.y)
                 lastpoint = newpoint
+            }
         }
-    }
-    canvas.onmouseup = function (aaa) {
-        using = false
+        canvas.onmouseup = function (aaa) {
+            using = false
+        }
+    } else {
+        //是触屏设备
+        canvas.ontouchstart = function (aaa) {
+            console.log(aaa)
+            var x = aaa.touches[0].clientX
+            var y = aaa.touches[0].clientY
+            using = true
+            if (eraserEnabled) {
+                context.clearRect(x, y, 10, 10)
+            } else
+                lastpoint = { 'x': x, 'y': y }
+        }
+        canvas.ontouchmove = function (aaa) {
+            console.log('边播变动')
+            var x = aaa.touches[0].clientX
+            var y = aaa.touches[0].clientY
+            if (!using) { return }
+            if (eraserEnabled) {
+                context.clearRect(x - 5, y - 5, 10, 10)
+            } else {
+                var newpoint = { 'x': x, 'y': y }
+                drawline(lastpoint.x, lastpoint.y, newpoint.x, newpoint.y)
+                lastpoint = newpoint
+            }
+        }
+        canvas.ontouchend = function (aaa) {
+            using = false
+        }
     }
 }
