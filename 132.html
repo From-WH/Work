@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .tab-button {
+      padding: 6px 10px;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      background: #f0f0f0;
+      margin-bottom: -1px;
+      margin-right: -1px;
+    }
+
+    .tab-button:hover {
+      background: #e0e0e0;
+    }
+
+    .tab-button.active {
+      background: #e0e0e0;
+    }
+
+    .tab {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="demo" class="demo">
+  <button
+      v-for="tab in tabs"
+      :key="tab"
+      :class="[tabs-button,{active:currentTab===tab}]"
+      @click="currentTab=tab"
+  >{{tab}}
+  </button>
+  <keep-alive>
+    <component :is="xxx" class="tab">
+
+    </component>
+  </keep-alive>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+  Vue.component('tab-home', {
+    template: `
+    <div>Home component</div>
+    `
+  })
+  Vue.component('tab-posts', {
+    template: `
+    <div>Home posts</div>
+    `
+  })
+  Vue.component('tab-archive', {
+    template: `
+    <div>Home archivet</div>
+    `
+  })
+
+  new Vue({
+    el: '#demo',
+    data: {
+      currentTab: 'home',
+      tabs: ['home', 'posts', 'archive']
+    },
+    computed: {
+      xxx() {
+        return 'tab-' + this.currentTab.toLowerCase()
+      }
+    }
+  })
+</script>
+</body>
+</html>
