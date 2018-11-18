@@ -50,7 +50,8 @@
     var buttonX = tag('button') //创建button按键
     buttonX.textContent = 'E'
     buttonX.id = id //根据id，确定每一个button按钮
-    buttonX.onclick = function (jjjjj) {     //button被点击
+    buttonX.onclick = function (jjjjj) {
+      console.log(button2);   //button被点击
       var button2 = jjjjj['target']
       var img3 = button2.previousSibling
       var kk = button2['id']   //确定点击的是哪一个button q w e..
@@ -123,11 +124,18 @@
   }
 
   function listenToUser(hash) {
+
     document.onkeypress = function (jjjjj) {    //用户点击
       var key = jjjjj['key']      //用户点击的哪个字母
       var website = hash[key]     //字母对应的网站
       // location.href = 'http://'+ website
       window.open('http://' + website, '_blank')  //在新的窗口打开网址
+    }
+    document.onclick = (jjjjj)=> {    //用户点击
+      var key = jjjjj.target.firstChild.innerText.toLowerCase()  //用户点击的哪个字母
+      var website = hash[key]
+      console.log(jjjjj.target.firstChild.innerText.toLowerCase());
+      window.open('http://' + website, '_blank')
     }
   }
 </script>

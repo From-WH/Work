@@ -9,7 +9,7 @@ f(1, 2)   // 5
 //以上就是柯里化  柯里化就是一个函数调用另一个函数，调用的那个函数且可以传一个参数
 
 
-var cache = [],
+var cache = []
 var add = function (n) {
   if (n === undefined) {
     return cache.reduce((p, n) => p + n, 0)
