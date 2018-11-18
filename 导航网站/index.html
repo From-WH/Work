@@ -134,8 +134,9 @@
     document.onclick = (jjjjj)=> {    //用户点击
       var key = jjjjj.target.firstChild.innerText.toLowerCase()  //用户点击的哪个字母
       var website = hash[key]
-      console.log(jjjjj.target.firstChild.innerText.toLowerCase());
-      window.open('http://' + website, '_blank')
+      if (website !== undefined){
+        window.open('http://' + website, '_blank')
+      }
     }
   }
 </script>
